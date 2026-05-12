@@ -1,0 +1,1 @@
+echo "$LOG_ARCHIVE_ACCOUNT_ID"

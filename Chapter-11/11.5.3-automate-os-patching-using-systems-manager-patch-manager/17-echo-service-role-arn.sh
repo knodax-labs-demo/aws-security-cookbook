@@ -1,0 +1,1 @@
+echo "$SERVICE_ROLE_ARN"

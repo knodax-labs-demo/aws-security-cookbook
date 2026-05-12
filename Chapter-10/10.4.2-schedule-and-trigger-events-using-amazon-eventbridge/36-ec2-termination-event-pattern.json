@@ -1,0 +1,9 @@
+cat > ec2-termination-event-pattern.json <<'EOF'
+{
+  "source": ["aws.ec2"],
+  "detail-type": ["EC2 Instance State-change Notification"],
+  "detail": {
+    "state": ["terminated"]
+  }
+}
+EOF

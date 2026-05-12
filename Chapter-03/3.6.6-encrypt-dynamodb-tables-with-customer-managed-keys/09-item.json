@@ -1,0 +1,5 @@
+{
+  "UserID": { "S": "U1001" },
+  "Name": { "S": "Alice" },
+  "Role": { "S": "Admin" }
+}

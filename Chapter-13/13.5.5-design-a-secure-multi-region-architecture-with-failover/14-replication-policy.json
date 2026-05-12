@@ -1,0 +1,50 @@
+cat > replication-policy.json <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadSourceBucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetReplicationConfiguration",
+        "s3:ListBucket"
+      ],
+      "Resource": "arn:aws:s3:::$PRIMARY_BUCKET"
+    },
+    {
+      "Sid": "ReadSourceObjects",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObjectVersion",
+        "s3:GetObjectVersionAcl",
+        "s3:GetObjectVersionForReplication",
+        "s3:GetObjectVersionTagging"
+      ],
+      "Resource": "arn:aws:s3:::$PRIMARY_BUCKET/*"
+    },
+    {
+      "Sid": "WriteDestinationObjects",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ReplicateObject",
+        "s3:ReplicateDelete",
+        "s3:ReplicateTags"
+      ],
+      "Resource": "arn:aws:s3:::$SECONDARY_BUCKET/*"
+    },
+    {
+      "Sid": "KMSReplicationAccess",
+      "Effect": "Allow",
+      "Action": [
+        "kms:Decrypt",
+        "kms:Encrypt",
+        "kms:GenerateDataKey"
+      ],
+      "Resource": [
+        "arn:aws:kms:$PRIMARY_REGION:$ACCOUNT_ID:key/$PRIMARY_KEY_ID",
+        "arn:aws:kms:$SECONDARY_REGION:$ACCOUNT_ID:key/$SECONDARY_KEY_ID"
+      ]
+    }
+  ]
+}
+EOF

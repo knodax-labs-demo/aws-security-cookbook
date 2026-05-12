@@ -1,0 +1,1 @@
+echo $VPC_ENDPOINT_ID

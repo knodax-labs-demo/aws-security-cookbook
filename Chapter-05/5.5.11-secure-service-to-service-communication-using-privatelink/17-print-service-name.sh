@@ -1,0 +1,1 @@
+echo $SERVICE_NAME

@@ -1,0 +1,1 @@
+echo "$COMMAND_ID"

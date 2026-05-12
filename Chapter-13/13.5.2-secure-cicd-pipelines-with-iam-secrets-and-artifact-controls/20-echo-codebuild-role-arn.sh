@@ -1,0 +1,1 @@
+echo "$CODEBUILD_ROLE_ARN"

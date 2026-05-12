@@ -1,0 +1,29 @@
+cat <<EOF > ip-restriction-sensitive-actions.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenySensitiveActionsOutsideTrustedIP",
+      "Effect": "Deny",
+      "Action": [
+        "iam:*",
+        "organizations:*",
+        "cloudtrail:StopLogging",
+        "cloudtrail:DeleteTrail",
+        "ec2:TerminateInstances"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "NotIpAddress": {
+          "aws:SourceIp": [
+            "203.0.113.0/24"
+          ]
+        },
+        "BoolIfExists": {
+          "aws:ViaAWSService": "false"
+        }
+      }
+    }
+  ]
+}
+EOF

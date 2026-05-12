@@ -1,0 +1,55 @@
+cat <<EOF > deny-untagged-ec2.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyRunInstancesWithoutEnvironment",
+      "Effect": "Deny",
+      "Action": "ec2:RunInstances",
+      "Resource": "*",
+      "Condition": {
+        "Null": {
+          "aws:RequestTag/Environment": "true"
+        }
+      }
+    },
+    {
+      "Sid": "DenyRunInstancesWithoutOwner",
+      "Effect": "Deny",
+      "Action": "ec2:RunInstances",
+      "Resource": "*",
+      "Condition": {
+        "Null": {
+          "aws:RequestTag/Owner": "true"
+        }
+      }
+    },
+    {
+      "Sid": "DenyRunInstancesWithoutCostCenter",
+      "Effect": "Deny",
+      "Action": "ec2:RunInstances",
+      "Resource": "*",
+      "Condition": {
+        "Null": {
+          "aws:RequestTag/CostCenter": "true"
+        }
+      }
+    },
+    {
+      "Sid": "DenyInvalidEnvironmentValue",
+      "Effect": "Deny",
+      "Action": "ec2:RunInstances",
+      "Resource": "*",
+      "Condition": {
+        "StringNotEqualsIfExists": {
+          "aws:RequestTag/Environment": [
+            "Dev",
+            "Test",
+            "Prod"
+          ]
+        }
+      }
+    }
+  ]
+}
+EOF

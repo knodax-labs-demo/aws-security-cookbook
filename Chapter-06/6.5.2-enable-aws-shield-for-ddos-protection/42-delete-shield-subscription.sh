@@ -1,0 +1,1 @@
+aws shield delete-subscription

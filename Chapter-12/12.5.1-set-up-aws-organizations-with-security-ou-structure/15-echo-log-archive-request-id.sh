@@ -1,0 +1,1 @@
+echo "$LOG_ARCHIVE_REQUEST_ID"

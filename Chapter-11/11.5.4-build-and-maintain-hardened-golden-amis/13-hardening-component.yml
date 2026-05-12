@@ -1,0 +1,33 @@
+cat > hardening-component.yml <<'EOF'
+name: HardenComponent
+description: Apply basic OS hardening for a Golden AMI
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+      - name: UpdatePackages
+        action: ExecuteBash
+        inputs:
+          commands:
+            - dnf update -y
+
+      - name: HardenSSH
+        action: ExecuteBash
+        inputs:
+          commands:
+            - sed -i 's/^#PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
+            - sed -i 's/^PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
+            - systemctl restart sshd || true
+
+      - name: InstallCloudWatchAgent
+        action: ExecuteBash
+        inputs:
+          commands:
+            - dnf install -y amazon-cloudwatch-agent || true
+
+      - name: CleanPackageCache
+        action: ExecuteBash
+        inputs:
+          commands:
+            - dnf clean all
+EOF

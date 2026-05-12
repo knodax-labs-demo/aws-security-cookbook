@@ -1,0 +1,11 @@
+aws cloudwatch put-metric-alarm \
+  --alarm-name $ALARM_NAME \
+  --metric-name FailedLoginAttempts \
+  --namespace SecurityMetrics \
+  --statistic Sum \
+  --period 300 \
+  --threshold 5 \
+  --comparison-operator GreaterThanThreshold \
+  --evaluation-periods 1 \
+  --alarm-actions $SNS_TOPIC_ARN \
+  --region $REGION

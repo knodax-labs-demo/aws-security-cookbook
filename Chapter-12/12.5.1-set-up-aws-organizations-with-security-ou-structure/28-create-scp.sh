@@ -1,0 +1,7 @@
+export SCP_ID=$(aws organizations create-policy \
+  --name "$SCP_NAME" \
+  --description "Prevent CloudTrail tampering across workload accounts" \
+  --type SERVICE_CONTROL_POLICY \
+  --content file://deny-cloudtrail-tampering.json \
+  --query 'Policy.PolicySummary.Id' \
+  --output text)

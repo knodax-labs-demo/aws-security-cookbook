@@ -1,0 +1,1 @@
+export RESOURCE_ARN=$ALB_ARN

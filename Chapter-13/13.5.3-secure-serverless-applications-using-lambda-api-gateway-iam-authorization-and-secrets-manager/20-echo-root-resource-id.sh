@@ -1,0 +1,1 @@
+echo "$ROOT_RESOURCE_ID"

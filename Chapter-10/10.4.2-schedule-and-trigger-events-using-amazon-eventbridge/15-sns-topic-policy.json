@@ -1,0 +1,16 @@
+cat > sns-topic-policy.json <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowEventBridgePublish",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "events.amazonaws.com"
+      },
+      "Action": "sns:Publish",
+      "Resource": "$TOPIC_ARN"
+    }
+  ]
+}
+EOF

@@ -1,0 +1,26 @@
+cat <<EOF > enforce-mfa-sensitive-actions.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenySensitiveActionsWithoutMFA",
+      "Effect": "Deny",
+      "Action": [
+        "ec2:TerminateInstances",
+        "iam:DeleteUser",
+        "iam:DeleteRole",
+        "iam:DetachRolePolicy",
+        "s3:DeleteBucket",
+        "cloudtrail:StopLogging",
+        "cloudtrail:DeleteTrail"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "BoolIfExists": {
+          "aws:MultiFactorAuthPresent": "false"
+        }
+      }
+    }
+  ]
+}
+EOF

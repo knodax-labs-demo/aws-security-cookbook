@@ -1,0 +1,21 @@
+cat <<EOF > lambda-permissions.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateTags",
+        "ec2:ModifyInstanceAttribute",
+        "ec2:DescribeInstances"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "sns:Publish",
+      "Resource": "$SNS_TOPIC_ARN"
+    }
+  ]
+}
+EOF

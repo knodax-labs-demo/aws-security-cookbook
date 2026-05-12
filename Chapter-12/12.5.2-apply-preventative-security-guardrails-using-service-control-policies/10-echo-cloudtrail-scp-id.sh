@@ -1,0 +1,1 @@
+echo "$SCP_CLOUDTRAIL_ID"

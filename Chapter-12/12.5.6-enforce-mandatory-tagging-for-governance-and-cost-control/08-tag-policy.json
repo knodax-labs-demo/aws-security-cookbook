@@ -1,0 +1,28 @@
+cat <<EOF > tag-policy.json
+{
+  "tags": {
+    "Environment": {
+      "tag_key": {
+        "@@assign": "Environment"
+      },
+      "tag_value": {
+        "@@assign": [
+          "Dev",
+          "Test",
+          "Prod"
+        ]
+      }
+    },
+    "Owner": {
+      "tag_key": {
+        "@@assign": "Owner"
+      }
+    },
+    "CostCenter": {
+      "tag_key": {
+        "@@assign": "CostCenter"
+      }
+    }
+  }
+}
+EOF

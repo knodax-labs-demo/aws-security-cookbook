@@ -1,0 +1,1 @@
+echo $ISOLATION_SG_ID

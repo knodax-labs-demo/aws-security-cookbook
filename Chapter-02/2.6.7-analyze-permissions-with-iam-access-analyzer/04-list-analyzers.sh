@@ -1,0 +1,1 @@
+aws accessanalyzer list-analyzers

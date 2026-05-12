@@ -1,0 +1,1 @@
+echo $SECURITY_ACCOUNT_ID

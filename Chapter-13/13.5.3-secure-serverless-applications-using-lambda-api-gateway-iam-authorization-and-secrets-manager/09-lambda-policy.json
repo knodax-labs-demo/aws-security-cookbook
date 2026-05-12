@@ -1,0 +1,25 @@
+cat > lambda-policy.json <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowLambdaLogging",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:$REGION:$ACCOUNT_ID:*"
+    },
+    {
+      "Sid": "AllowReadSpecificSecret",
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:GetSecretValue"
+      ],
+      "Resource": "$SECRET_ARN"
+    }
+  ]
+}
+EOF

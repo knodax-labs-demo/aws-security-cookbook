@@ -1,0 +1,43 @@
+cat <<EOF > abac-s3-policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ListDemoBucket",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::$BUCKET_NAME"
+    },
+    {
+      "Sid": "PutObjectWithMatchingTags",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:PutObjectTagging"
+      ],
+      "Resource": "arn:aws:s3:::*/*",
+      "Condition": {
+        "StringEquals": {
+          "s3:RequestObjectTag/Project": "\${aws:PrincipalTag/Project}",
+          "s3:RequestObjectTag/Environment": "\${aws:PrincipalTag/Environment}"
+        }
+      }
+    },
+    {
+      "Sid": "ReadDeleteObjectsWithMatchingTags",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": "arn:aws:s3:::*/*",
+      "Condition": {
+        "StringEquals": {
+          "s3:ExistingObjectTag/Project": "\${aws:PrincipalTag/Project}",
+          "s3:ExistingObjectTag/Environment": "\${aws:PrincipalTag/Environment}"
+        }
+      }
+    }
+  ]
+}
+EOF

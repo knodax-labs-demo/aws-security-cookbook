@@ -1,0 +1,12 @@
+aws cloudwatch put-metric-alarm \
+  --alarm-name $ALARM_NAME \
+  --metric-name $METRIC_NAME \
+  --namespace $METRIC_NAMESPACE \
+  --statistic Sum \
+  --period 300 \
+  --threshold 1 \
+  --comparison-operator GreaterThanOrEqualToThreshold \
+  --evaluation-periods 1 \
+  --alarm-actions $SNS_TOPIC_ARN \
+  --treat-missing-data notBreaching \
+  --region $REGION

@@ -1,0 +1,39 @@
+cat <<EOF > waf-rules.json
+[
+  {
+    "Name": "BlockBadIP",
+    "Priority": 0,
+    "Statement": {
+      "IPSetReferenceStatement": {
+        "ARN": "$IP_SET_ARN"
+      }
+    },
+    "Action": {
+      "Block": {}
+    },
+    "VisibilityConfig": {
+      "SampledRequestsEnabled": true,
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "BlockBadIP"
+    }
+  },
+  {
+    "Name": "AWSManagedRulesCommonRuleSet",
+    "Priority": 1,
+    "Statement": {
+      "ManagedRuleGroupStatement": {
+        "VendorName": "AWS",
+        "Name": "AWSManagedRulesCommonRuleSet"
+      }
+    },
+    "OverrideAction": {
+      "None": {}
+    },
+    "VisibilityConfig": {
+      "SampledRequestsEnabled": true,
+      "CloudWatchMetricsEnabled": true,
+      "MetricName": "AWSManagedRules"
+    }
+  }
+]
+EOF

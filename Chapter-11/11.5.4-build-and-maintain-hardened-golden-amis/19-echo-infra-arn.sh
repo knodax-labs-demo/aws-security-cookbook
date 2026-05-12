@@ -1,0 +1,1 @@
+echo "$INFRA_ARN"

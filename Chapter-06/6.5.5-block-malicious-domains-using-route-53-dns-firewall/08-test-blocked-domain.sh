@@ -1,0 +1,1 @@
+nslookup badsite.com

@@ -1,0 +1,1 @@
+rm -f env.sh security_handler.py security_handler.zip lambda-trust-policy.json lambda-permissions.json stepfunctions-trust-policy.json stepfunctions-permissions.json security-workflow.json eventbridge-trust-policy.json eventbridge-permissions.json

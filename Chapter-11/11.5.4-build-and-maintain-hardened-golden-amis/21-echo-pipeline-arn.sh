@@ -1,0 +1,1 @@
+echo "$PIPELINE_ARN"

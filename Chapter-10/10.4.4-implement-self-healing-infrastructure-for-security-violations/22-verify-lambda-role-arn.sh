@@ -1,0 +1,1 @@
+echo $LAMBDA_ROLE_ARN

@@ -1,0 +1,1 @@
+aws auditmanager get-settings

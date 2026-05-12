@@ -1,0 +1,1 @@
+echo "$IMAGE_BUILD_VERSION_ARN"

@@ -1,0 +1,12 @@
+cat <<EOF > encryption.json
+{
+  "Rules": [
+    {
+      "ApplyServerSideEncryptionByDefault": {
+        "SSEAlgorithm": "aws:kms",
+        "KMSMasterKeyID": "$KMS_KEY_ID"
+      }
+    }
+  ]
+}
+EOF

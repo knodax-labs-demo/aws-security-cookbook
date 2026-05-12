@@ -1,0 +1,19 @@
+cat > buildspec.yml <<EOF
+version: 0.2
+
+env:
+  secrets-manager:
+    DB_PASSWORD: "$SECRET_NAME:password"
+
+phases:
+  build:
+    commands:
+      - echo "Starting secure build"
+      - aws sts get-caller-identity
+      - echo "Secret retrieved securely. Do not print secret values."
+      - echo "Build artifact" > artifact.txt
+
+artifacts:
+  files:
+    - artifact.txt
+EOF

@@ -1,0 +1,56 @@
+cat <<EOF > security-workflow.json
+{
+  "Comment": "End-to-end security automation workflow",
+  "StartAt": "ValidateFinding",
+  "States": {
+    "ValidateFinding": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:$REGION:$ACCOUNT_ID:function:$FUNCTION_NAME",
+      "Parameters": {
+        "action": "validate",
+        "finding.$": "$"
+      },
+      "Next": "IsValidFinding"
+    },
+    "IsValidFinding": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.valid",
+          "BooleanEquals": true,
+          "Next": "TagResource"
+        }
+      ],
+      "Default": "IgnoreFinding"
+    },
+    "TagResource": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:$REGION:$ACCOUNT_ID:function:$FUNCTION_NAME",
+      "Parameters": {
+        "action": "tag",
+        "finding.$": "$.finding"
+      },
+      "Next": "NotifySecurityTeam"
+    },
+    "NotifySecurityTeam": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:$REGION:$ACCOUNT_ID:function:$FUNCTION_NAME",
+      "Parameters": {
+        "action": "notify",
+        "finding.$": "$.finding"
+      },
+      "Next": "MarkForManualReview"
+    },
+    "MarkForManualReview": {
+      "Type": "Pass",
+      "Result": "Finding tagged and notification sent. Manual approval or quarantine step can be added here.",
+      "End": true
+    },
+    "IgnoreFinding": {
+      "Type": "Pass",
+      "Result": "Finding ignored because no supported resource was found.",
+      "End": true
+    }
+  }
+}
+EOF

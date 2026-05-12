@@ -1,0 +1,1 @@
+aws guardduty list-detectors

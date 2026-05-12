@@ -1,0 +1,27 @@
+cat > replication-config.json <<EOF
+{
+  "Role": "$REPLICATION_ROLE_ARN",
+  "Rules": [
+    {
+      "ID": "ReplicateEncryptedObjectsToSecondaryRegion",
+      "Status": "Enabled",
+      "Priority": 1,
+      "Filter": {},
+      "DeleteMarkerReplication": {
+        "Status": "Enabled"
+      },
+      "SourceSelectionCriteria": {
+        "SseKmsEncryptedObjects": {
+          "Status": "Enabled"
+        }
+      },
+      "Destination": {
+        "Bucket": "arn:aws:s3:::$SECONDARY_BUCKET",
+        "EncryptionConfiguration": {
+          "ReplicaKmsKeyID": "arn:aws:kms:$SECONDARY_REGION:$ACCOUNT_ID:key/$SECONDARY_KEY_ID"
+        }
+      }
+    }
+  ]
+}
+EOF

@@ -1,0 +1,1 @@
+echo "$COMPONENT_ARN"

@@ -1,0 +1,15 @@
+cat > cwlogs-firehose-policy.json <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "firehose:PutRecord",
+        "firehose:PutRecordBatch"
+      ],
+      "Resource": "arn:aws:firehose:$REGION:$ACCOUNT_ID:deliverystream/$FIREHOSE_NAME"
+    }
+  ]
+}
+EOF

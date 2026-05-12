@@ -1,0 +1,18 @@
+cat <<EOF > enforce-dynamodb-encryption.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyUnencryptedDynamoDB",
+      "Effect": "Deny",
+      "Action": "dynamodb:CreateTable",
+      "Resource": "*",
+      "Condition": {
+        "StringNotEqualsIfExists": {
+          "dynamodb:SSESpecification.SSEType": "KMS"
+        }
+      }
+    }
+  ]
+}
+EOF

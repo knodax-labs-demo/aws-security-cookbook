@@ -1,0 +1,23 @@
+cat <<EOF > s3-endpoint-policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "RestrictToVPCEndpointExceptAdminUser",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::$BUCKET_NAME",
+        "arn:aws:s3:::$BUCKET_NAME/*"
+      ],
+      "Condition": {
+        "StringNotEquals": {
+          "aws:SourceVpce": "$VPC_ENDPOINT_ID",
+          "aws:PrincipalArn": "arn:aws:iam::$ACCOUNT_ID:user/ssingh"
+        }
+      }
+    }
+  ]
+}
+EOF

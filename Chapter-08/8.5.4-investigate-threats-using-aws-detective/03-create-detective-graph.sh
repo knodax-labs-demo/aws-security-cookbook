@@ -1,0 +1,1 @@
+aws detective create-graph

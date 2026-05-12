@@ -1,0 +1,14 @@
+aws rds create-db-instance \
+  --db-instance-identifier $DB_INSTANCE_ID \
+  --engine mysql \
+  --db-instance-class db.t3.micro \
+  --allocated-storage 20 \
+  --master-username $DB_USER \
+  --master-user-password $DB_PASSWORD \
+  --db-name $DB_NAME \
+  --storage-encrypted \
+  --kms-key-id $KMS_KEY_ALIAS \
+  --vpc-security-group-ids $SG_ID \
+  --db-subnet-group-name $SUBNET_GROUP_NAME \
+  --backup-retention-period 7 \
+  --no-publicly-accessible

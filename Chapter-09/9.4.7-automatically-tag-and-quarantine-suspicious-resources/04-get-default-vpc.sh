@@ -1,0 +1,5 @@
+export VPC_ID=$(aws ec2 describe-vpcs \
+  --filters Name=isDefault,Values=true \
+  --query 'Vpcs[0].VpcId' \
+  --output text \
+  --region $REGION)

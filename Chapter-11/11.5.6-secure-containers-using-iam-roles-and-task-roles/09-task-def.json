@@ -1,0 +1,27 @@
+cat <<EOF > task-def.json
+{
+  "family": "$TASK_DEF_NAME",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::$ACCOUNT_ID:role/$EXEC_ROLE_NAME",
+  "taskRoleArn": "arn:aws:iam::$ACCOUNT_ID:role/$TASK_ROLE_NAME",
+  "containerDefinitions": [
+    {
+      "name": "app",
+      "image": "public.ecr.aws/aws-cli/aws-cli:latest",
+      "essential": true,
+      "command": ["s3", "ls"],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/security",
+          "awslogs-region": "$REGION",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
+EOF

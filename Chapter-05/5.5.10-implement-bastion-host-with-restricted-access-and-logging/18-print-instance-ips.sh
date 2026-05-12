@@ -1,0 +1,2 @@
+echo $BASTION_IP
+echo $PRIVATE_IP

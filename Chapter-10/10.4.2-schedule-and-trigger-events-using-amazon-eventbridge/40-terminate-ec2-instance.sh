@@ -1,0 +1,3 @@
+aws ec2 terminate-instances \
+  --instance-ids $INSTANCE_ID \
+  --region $REGION

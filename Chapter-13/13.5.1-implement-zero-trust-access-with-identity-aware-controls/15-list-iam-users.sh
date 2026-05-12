@@ -1,0 +1,3 @@
+aws iam list-users \
+  --query 'Users[*].UserName' \
+  --output text

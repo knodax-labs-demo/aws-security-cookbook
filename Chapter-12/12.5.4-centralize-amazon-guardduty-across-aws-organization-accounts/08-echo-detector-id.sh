@@ -1,0 +1,1 @@
+echo "$DETECTOR_ID"

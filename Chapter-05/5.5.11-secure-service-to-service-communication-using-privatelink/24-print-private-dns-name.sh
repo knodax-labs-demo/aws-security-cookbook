@@ -1,0 +1,1 @@
+echo $PRIVATE_DNS_NAME

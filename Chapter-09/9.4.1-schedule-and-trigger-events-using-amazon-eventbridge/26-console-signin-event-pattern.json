@@ -1,0 +1,6 @@
+cat > console-signin-event-pattern.json <<'EOF'
+{
+  "source": ["aws.signin"],
+  "detail-type": ["AWS Console Sign In via CloudTrail"]
+}
+EOF

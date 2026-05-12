@@ -1,0 +1,1 @@
+echo "$RESOURCE_ID"

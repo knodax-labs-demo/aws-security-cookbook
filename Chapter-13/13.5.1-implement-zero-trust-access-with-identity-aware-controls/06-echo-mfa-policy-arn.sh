@@ -1,0 +1,1 @@
+echo "$MFA_POLICY_ARN"

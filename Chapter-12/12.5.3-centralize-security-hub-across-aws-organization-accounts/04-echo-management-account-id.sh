@@ -1,0 +1,1 @@
+echo "$MANAGEMENT_ACCOUNT_ID"

@@ -1,0 +1,1 @@
+aws configservice describe-configuration-recorders

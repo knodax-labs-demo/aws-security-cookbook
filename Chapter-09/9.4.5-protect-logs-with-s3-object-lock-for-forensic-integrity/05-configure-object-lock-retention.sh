@@ -1,0 +1,11 @@
+aws s3api put-object-lock-configuration \
+  --bucket $BUCKET_NAME \
+  --object-lock-configuration '{
+    "ObjectLockEnabled": "Enabled",
+    "Rule": {
+      "DefaultRetention": {
+        "Mode": "GOVERNANCE",
+        "Days": 1
+      }
+    }
+  }'
