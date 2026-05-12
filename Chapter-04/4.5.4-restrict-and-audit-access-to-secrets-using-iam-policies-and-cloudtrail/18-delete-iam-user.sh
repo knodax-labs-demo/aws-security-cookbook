@@ -1,0 +1,2 @@
+aws iam delete-user \
+  --user-name $USER_NAME

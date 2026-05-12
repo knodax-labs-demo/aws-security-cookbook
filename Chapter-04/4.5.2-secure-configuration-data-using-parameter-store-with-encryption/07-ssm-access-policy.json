@@ -1,0 +1,12 @@
+cat <<EOF > ssm-access-policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "ssm:GetParameter",
+      "Resource": "arn:aws:ssm:$REGION:$ACCOUNT_ID:parameter/app/prod/*"
+    }
+  ]
+}
+EOF
