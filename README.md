@@ -1,5 +1,4 @@
-<img width="1280" height="640" alt="aws-security-cookbook-github" src="https://github.com/user-attachments/assets/f1ef3ef1-1db1-4f49-8cba-1b543a22d39b" />
-
+<img width="1280" height="640" alt="aws-security-cookbook-github" src="https://github.com/user-attachments/assets/4e8ce633-b195-46d2-850c-8c224e3ab9ee" />
 
 <p align="center">
   <strong>⭐ If this repository helps you, please give it a star! ⭐</strong>
